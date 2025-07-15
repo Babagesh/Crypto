@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, useState} from 'react'
-
+import CoinInfo from './components/CoinInfo';
 
 const API_KEY = import.meta.env.VITE_CRYPTO_ACCESS_KEY;
 
@@ -12,6 +12,7 @@ export default function App()
         async function fetchAllCoinData() {
             const response = await fetch(`https://min-api.cryptocompare.com/data/all/coinlist?api_key=${API_KEY}`);
             const json = await response.json();
+            console.log(json);
             setList(json);
         } 
         fetchAllCoinData().catch(console.error);
@@ -30,7 +31,11 @@ export default function App()
                     )
                     
                 ).map(([number, coinData]) => 
-                    <li key = {coinData['FullName']}>{coinData['FullName']} </li>
+                    <CoinInfo 
+                        name = {coinData['FullName']}
+                        image = {coinData['ImageUrl']}
+                        symbol = {coinData['Symbol']}
+                    />
                 )
             )
             }
