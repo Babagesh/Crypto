@@ -1,4 +1,6 @@
 import {useEffect, useState} from 'react'
+import {Link} from 'react-router-dom'
+
 
 const API_KEY = import.meta.env.VITE_CRYPTO_ACCESS_KEY;
 
@@ -16,13 +18,17 @@ const CoinInfo = ({image, name, symbol}) =>
         }, [symbol])
 
     return (
-        <li className = "main-list" key = {symbol}>
-            <img className = 'icons'src = {`https://www.cryptocompare.com${image}`} alt={`Small icon for ${name} crypto coin`}/>
-            {name}
-            {
-            price && price.USD ? <span className = 'tab'>${price.USD} USD</span> : null
-            }
-        </li>
+            <Link
+                style={{color: 'black'}}
+                to={`/coinDetails/${symbol}`}
+                key={symbol}
+            >
+                    <img className = 'icons' src = {`https://www.cryptocompare.com${image}`} alt={`Small icon for ${name} crypto coin`}/>
+                    {name}
+                    {
+                    price && price.USD ? <span className = 'tab'>${price.USD} USD</span> : null
+                    }
+            </Link>
     );
 
 }

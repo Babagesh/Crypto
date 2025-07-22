@@ -33,7 +33,7 @@ const CoinDetail = () => {
             <h1> {fullDetails['textData'][symbol]['FullName']} </h1>
             <img 
                 className = 'images'
-                src = {`https://www.cryptocompare.com${fullDetails['numbers'][symbol]['USD']['IMAGEURL']}`}
+                src = {fullDetails['numbers'][symbol]['USD']['IMAGEURL']}
                 alt = {`Small icon for ${symbol} crypto coin`}
             />
             <div> {fullDetails['textData'][symbol]['Description']}</div>
